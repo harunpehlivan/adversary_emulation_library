@@ -12,8 +12,7 @@ class Parser(BaseParser):
 
     def ntlm_parser(self, text):
         if text and len(text) > 0:
-            value = re.search(r'\w{32}', text)
-            if value:
+            if value := re.search(r'\w{32}', text):
                 return [value.group(0)]
 
     def parse(self, blob):

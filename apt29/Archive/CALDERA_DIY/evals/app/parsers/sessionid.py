@@ -12,8 +12,7 @@ class Parser(BaseParser):
 
     def sessionid_parser(self, text):
         if text and len(text) > 0:
-            value = re.search(r'\s\d', text)
-            if value:
+            if value := re.search(r'\s\d', text):
                 return [value.group(0)]
             else:
                 print("[!!!] Session id parser not found")
