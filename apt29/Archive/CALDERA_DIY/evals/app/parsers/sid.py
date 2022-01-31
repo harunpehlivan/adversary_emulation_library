@@ -12,8 +12,7 @@ class Parser(BaseParser):
 
     def sid_parser(self, text):
         if text and len(text) > 0:
-            value = re.search(r'S-(\d-?){1,34}', text)
-            if value:
+            if value := re.search(r'S-(\d-?){1,34}', text):
                 return [value.group(0)[:-1]]
             else:
                 print("[!] Error parsing SID")
@@ -31,6 +30,6 @@ class Parser(BaseParser):
                                      )
                     )
         except Exception:
-            import pdb; pdb.set_trace()
-            pass
+            import pdb
+            pdb.set_trace()
         return relationships

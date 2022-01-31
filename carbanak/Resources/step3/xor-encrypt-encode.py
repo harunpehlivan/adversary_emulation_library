@@ -34,12 +34,11 @@ def getShellcode(fileName):
 
 def encryptShellcode(shellcodeBytes, key):
     # XOR Encrypt Shellcode
-    encryptedShellcode = xor(shellcodeBytes, key) 
+    encryptedShellcode = xor(shellcodeBytes, key)
     print("--- Encrypted shellcode size: {} bytes".format(len(encryptedShellcode)))
     try:
-        f = open("reverseencrypted.raw", "wb+")
-        f.write(encryptedShellcode)
-        f.close()
+        with open("reverseencrypted.raw", "wb+") as f:
+            f.write(encryptedShellcode)
     except:
         print("!!! Unable to write encrypted shellcode to file.")
         quit()
@@ -65,9 +64,8 @@ def writeEncodedToFile(compressedShellcode, outfile):
         quit()
 
     try:
-        f = open(outfile, "wb+")
-        numChars = f.write(encodedShellcode)
-        f.close()
+        with open(outfile, "wb+") as f:
+            numChars = f.write(encodedShellcode)
         print("--- Encoded shellcode written to {}.".format(outfile))
     except IOError:
         print("!!! Could not write encoded shellcode to file.")
